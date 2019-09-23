@@ -14,7 +14,7 @@ class Enemy:
 
 
     def hit(self, recievedDamage):
-        self.health = self.health - (recievedDamage - (self.armor*0.5))
+        self.health-= recievedDamage*(100/(100+self.armor))
 
 
     def printStats(self):

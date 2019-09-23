@@ -1,4 +1,5 @@
 import math as m
+import random
 
 class Hero:
 
@@ -18,6 +19,8 @@ class Hero:
         self.expLim = 100
         self.maxHealth = 100
         self.maxStamina = 100
+        self.evadeChance = 0.06
+
 
     def setExp(self, gottenExp):
         self.exp+=gottenExp
@@ -46,9 +49,11 @@ class Hero:
         elif choice == 2:
             self.agl += 1
             self.maxStamina += 20
+            self.setEvadeChance()
         else:
             self.int+=1
         self.health = self.maxHealth
+        self.setExpLimn()
         if self.exp > self.expLim:
             return True
         else:
@@ -58,11 +63,11 @@ class Hero:
     def getDamage(self):
         return self.str + (self.agl * 0.3)
 
-    def evadeChance(self):
-        return self.agl/100
+    def setEvadeChance(self):
+        return 1.25/(1+m.exp(-(0.07 * self.agl - 2))) - 0.2
 
-    def runChance(self):
-        return self.agl/20
+    def getRunChance(self):
+        return 1/(1.3 + m.exp(-(self.agl - 14))) + 0.1
 
 
     def heal(self, healAmount):

@@ -1,6 +1,4 @@
-import math as m
-
-
-for x in range(10):
-    exp = (m.fabs(x-1 + 300*2**((x-1)/4)))/4
-    print(int(exp))
+x = 100
+armor =50
+x-= 50*(100/(100+armor))
+print(x)

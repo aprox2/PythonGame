@@ -1,4 +1,5 @@
 import item
+import random
 
 def chooseAction():
     while True:
@@ -29,6 +30,7 @@ def chooseItem(hero):
 def parseChoice(hero, enemy, choice):
     if choice == 1:
         enemy.hit(hero.getDamage())
+        return False
     elif choice == 2:
         while True:
             item = chooseItem(hero)
@@ -41,8 +43,12 @@ def parseChoice(hero, enemy, choice):
             else:
                 print("You don't have that item")
         useItem(hero, enemy, item)
+        return False
     else:
         print("Trying to run")
+        if runAway(hero):
+            return True
+
 
 
 
@@ -52,3 +58,10 @@ def useItem(hero, enemy, item):
     enemy.hit(itemAttributes["Damage"])
     hero.heal(itemAttributes["Heal"])
     hero.recover(itemAttributes["Stamina"])
+
+def runAway(hero):
+    chanceNum = random.random()
+    if chanceNum < hero.evadeChance:
+        return True
+    else:
+        return False

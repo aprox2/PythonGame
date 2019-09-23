@@ -8,7 +8,7 @@ def main():
     hero = Hero()
     spider = Spider()
     while run:
-        Arena = arena.Arena()
+        Arena = arena.Arena(hero, spider)
         Arena.Start(hero, spider)
         break
 
