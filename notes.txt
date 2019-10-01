@@ -1,0 +1,15 @@
+button = subButtons.Attack()
+butt1 = button.getNotPressed()
+butt2 = button.getPressed()
+SCREEN.blit(butt1, button.getPos())
+while run:
+    mouse = p.mouse.get_pos()
+    if button.getX() + 300 > mouse[0] > button.getX() and button.getY() + 100 > mouse[1]\
+            > button.getY():
+        SCREEN.blit(butt2, button.getPos())
+    else:
+        SCREEN.blit(butt1, button.getPos())
+
+
+
+
