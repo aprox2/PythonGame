@@ -13,3 +13,17 @@ while run:
 
 
 
+p.image.load("assets/attackDOWN.png")
+p.image.load("assets/attackUP.png")
+
+p.image.load("assets/InventoryDOWN.pn
+p.image.load("assets/InventoryUP.png"
+p.image.load("assets/runDOWN.png")
+
+p.image.load("assets/runUP.png")
+
+
+myFont = p.font.Font("assets/font/manaspc.ttf", 40)
+label = myFont.render("123", 1, (255, 255, 255))
+
+SCREEN.blit(label, (400, 400))

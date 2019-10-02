@@ -1,8 +1,10 @@
 
 
-x = None
 
-if x == None:
-    print(1)
-else:
-    print(2)
+
+def chec():
+    x= 1
+
+
+if __name__ == "__main__":
+    print(chec)

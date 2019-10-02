@@ -10,6 +10,9 @@ class Buttons:
         self.xPos = -1
         self.yPos = -1
 
+    def getName(self):
+        return self.name
+
     def getNotPressed(self):
         if self.buttUP == None:
             return p.image.load(self.fallBack)
