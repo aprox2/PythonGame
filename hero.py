@@ -22,6 +22,9 @@ class Hero:
         self.evadeChance = 0.06
 
 
+    def getHealth(self):
+        return self.health
+
     def setExp(self, gottenExp):
         self.exp+=gottenExp
         self.checkLevel()

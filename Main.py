@@ -21,25 +21,21 @@ def main():
     button = subButtons.Attack()
     menuIMG = p.image.load("assets/menuBG.png")
     SCREEN.blit(menuIMG, (0, 520))
-    renderScr = render.Render(SCREEN)
-    num = Number(SCREEN, 40, (255, 255, 255), 123, 300, 300)
+    renderScr = render.Render(SCREEN, hero, spider)
 
     while run:
         SCREEN.fill((0, 0, 0))
         renderScr.renderMenu()
         renderScr.checkHoover()
-        num.draw()
+        renderScr.renderHealth(SCREEN)
         # Deal with events
         for e in p.event.get():
             if e.type == p.QUIT:
                 run = False
             if e.type == p.MOUSEBUTTONUP:
                 renderScr.checkClicked()
-                num.changeValue(720)
             if e.type == p.KEYDOWN and e.key == p.K_ESCAPE:
                 run = False
-            if e.type == p.KEYDOWN and e.key == p.K_TAB:
-                num.changeColor((255, 0, 0))
 
         p.display.flip() #Updates display
         CLOCK.tick(60) #Framerate

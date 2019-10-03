@@ -2,14 +2,20 @@ import Main
 import pygame as p
 from Arena.menu import Menu
 from Arena.subButtons import *
+from Common.number import Number
+import actions
 
 class Render:
 
-    def __init__(self, SCREEN):
+    def __init__(self, SCREEN, hero, enemy):
         self.SCREEN = SCREEN
         self.menuObj = Menu()
         self.buttonObjs = [Attack(), UseItem(), Run()]
         self.currentButt = None
+        self.hero = hero
+        self.enemy = enemy
+
+
 
     def renderMenu(self):
         self.SCREEN.blit(self.menuObj.getIMG(), self.menuObj.getPos())
@@ -32,5 +38,13 @@ class Render:
     def checkClicked(self):
         mousePOS = p.mouse.get_pos()
         if self.currentButt != None:
-            print(self.currentButt.getName())
+            if self.currentButt.getName() == "Attack":
+                actions.attack(self.hero, self.enemy, True)
 
+
+    def renderHealth(self,SCREEN):
+        heroHP = Number(SCREEN, 40, (255, 255, 255), self.hero.getHealth(), 300, 300)
+        enemyHP = Number(SCREEN, 40, (255, 255, 255), self.enemy.getHealth(), 600, 300)
+        values = (heroHP, enemyHP)              #Uzmanigi, varētu nemainities, jo tuple
+        for hps in values:
+            hps.draw()
