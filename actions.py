@@ -3,7 +3,7 @@ import item
 
 def attack(hero, enemy, heroTriggered):
     if heroTriggered:
-        enemy.hit(hero.getDamage())
+        enemy.hit(hero.damage())
     else:
         x=1
 
@@ -22,7 +22,7 @@ def recover(hero, enemy, ammount):
 def useItem( hero, enemy):
     while True:
         item = chooseItem(hero)
-        if hero.checkIfItemExists(item):
+        if hero.check_if_item_exists(item):
             accept = input("Are you sure you want to use " + str(item.returnName()) + "\n")
             if accept == "y":
                 break

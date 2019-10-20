@@ -16,7 +16,6 @@ class Render:
         self.enemy = enemy
 
 
-
     def renderMenu(self):
         self.SCREEN.blit(self.menuObj.getIMG(), self.menuObj.getPos())
         for buttons in self.buttonObjs:
@@ -43,7 +42,7 @@ class Render:
 
 
     def renderHealth(self,SCREEN):
-        heroHP = Number(SCREEN, 40, (255, 255, 255), self.hero.getHealth(), 300, 300)
+        heroHP = Number(SCREEN, 40, (255, 255, 255), self.hero.get_health(), 300, 300)
         enemyHP = Number(SCREEN, 40, (255, 255, 255), self.enemy.getHealth(), 600, 300)
         values = (heroHP, enemyHP)              #Uzmanigi, varētu nemainities, jo tuple
         for hps in values:

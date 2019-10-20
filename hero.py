@@ -1,6 +1,7 @@
 import math as m
 import random
 
+
 class Hero:
 
     def __init__(self):
@@ -19,32 +20,42 @@ class Hero:
         self.expLim = 100
         self.maxHealth = 100
         self.maxStamina = 100
-        self.evadeChance = 0.06
 
+    @property
+    def exp_lim(self):
+        x = self.level
+        self.expLim = (m.fabs(x - 1 + 300 * 2 ** ((x - 1) / 4))) / 4
 
-    def getHealth(self):
+    @property
+    def evade_chance(self):
+        return 1.25/(1+m.exp(-(0.07 * self.agl - 2))) - 0.2
+
+    @property
+    def damage(self):
+        return self.str + (self.agl * 0.2)
+
+    def get_health(self):
         return self.health
 
-    def setExp(self, gottenExp):
-        self.exp+=gottenExp
-        self.checkLevel()
+    def set_exp(self, gotten_exp):
+        self.exp += gotten_exp
+        self.check_level()
         return
 
     def setExpLimn(self):
         x = self.level
         self.expLim = (m.fabs(x-1 + 300*2**((x-1)/4)))/4
 
-    def checkLevel(self):
+    def check_level(self):
         checking = True
         while checking:
             if self.exp > self.expLim:
-                self.exp-=self.expLim
-                checking = self.lvlUp()
+                self.exp -= self.expLim
+                checking = self.lvl_up()
             else:
                 return
 
-
-    def lvlUp(self):
+    def lvl_up(self):
         choice = int(input("Congratulations choose an attribute to level up\n1.Strength\n2.Agility\n3.Intelligence\n"))
         if choice == 1:
             self.str += 1
@@ -52,9 +63,8 @@ class Hero:
         elif choice == 2:
             self.agl += 1
             self.maxStamina += 20
-            self.setEvadeChance()
         else:
-            self.int+=1
+            self.int += 1
         self.health = self.maxHealth
         self.setExpLimn()
         if self.exp > self.expLim:
@@ -62,36 +72,24 @@ class Hero:
         else:
             return False
 
-
-    def getDamage(self):
-        return self.str + (self.agl * 0.3)
-
-    def setEvadeChance(self):
-        return 1.25/(1+m.exp(-(0.07 * self.agl - 2))) - 0.2
-
-    def getRunChance(self):
+    def get_run_chance(self):
         return 1/(1.3 + m.exp(-(self.agl - 14))) + 0.1
 
-
-    def heal(self, healAmount):
-
-        currHealth = self.health + healAmount
-        if currHealth > self.maxHealth:
+    def heal(self, heal_amount):
+        curr_health = self.health + heal_amount
+        if curr_health > self.maxHealth:
             self.health = self.maxHealth
         else:
-            self.health = currHealth
+            self.health = curr_health
 
-
-    def recover(self, recoverAmount):
-
-        currRecovery = self.stamina + recoverAmount
-        if currRecovery > self.maxStamina:
+    def recover(self, recovery_amount):
+        curr_recovery = self.stamina + recovery_amount
+        if curr_recovery > self.maxStamina:
             self.stamina = self.maxStamina
         else:
-            self.stamina = currRecovery
+            self.stamina = curr_recovery
 
-
-    def checkIfItemExists(self, item):
+    def check_if_item_exists(self, item):
         if self.items[item.name] >= 1:
             return True
         else:

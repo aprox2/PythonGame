@@ -29,12 +29,12 @@ def chooseItem(hero):
 
 def parseChoice(hero, enemy, choice):
     if choice == 1:
-        enemy.hit(hero.getDamage())
+        enemy.hit(hero.damage())
         return False
     elif choice == 2:
         while True:
             item = chooseItem(hero)
-            if hero.checkIfItemExists(item):
+            if hero.check_if_item_exists(item):
                 accept = input("Are you sure you want to use " + str(item.returnName()) + "\n")
                 if accept == "y":
                     break
@@ -61,7 +61,7 @@ def useItem(hero, enemy, item):
 
 def runAway(hero):
     chanceNum = random.random()
-    if chanceNum < hero.evadeChance:
+    if chanceNum < hero.evade_chance:
         return True
     else:
         return False
